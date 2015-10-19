@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('monk')('localhost/students');
+var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/students');
 var students = db.get('students');
 var users = db.get('users');
 var bcrypt = require('bcrypt');
@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 router.get('/students', function(req, res, next){
   if (req.session.user){
     students.find({}, function(err, data){
-      if (data.length > 0){
+      if (data){
         res.render('students', {students: data})
       } else {
         res.render('students', {students: []});
