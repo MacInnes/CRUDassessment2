@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 Please add a student below:
+
+  if errors
+    each error in errors
+      h4(id='error') #{error}
+      
+  form(action='/students' method='post')
+    label Student's name:
+      input(type='text' name='name')
+    div
+      label Phone number:
+        input(type='text' name='phone')
+    button(type='submit') Add Student

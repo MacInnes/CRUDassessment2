@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 Welcome to the Students page!
+  if students.length
+    table
+      tr
+        th Student name:
+        th Student phone: 
+      each student in students
+        tr
+          td 
+           a(href='/students/' + student._id) #{student.name}
+          td #{student.phone}
+
+  a(href='/add') Add a student
+  div
+    a(href='/') Logout

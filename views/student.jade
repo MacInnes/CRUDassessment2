@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h2 Student name: #{student.name}
+  h2 Student phone: #{student.phone}
+  div
+    a(href='/add') Add a student
+  div
+    a(href='/') Logout

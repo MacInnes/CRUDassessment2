@@ -4,6 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var db = require('monk')('localhost/students');
+var students = db.get('students');
+var users = db.get('users');
+var session = require('express-session');
+var bcrypt = require('bcrypt');
+require('dotenv').load();
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -21,6 +27,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'charliedog',
+  cookie: {secure: false}
+}));
 
 app.use('/', routes);
 app.use('/users', users);

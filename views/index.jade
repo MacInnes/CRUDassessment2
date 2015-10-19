@@ -1,5 +1,20 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Students
+  p Welcome to the student login page!  Please login or register below.
+
+  if errors
+    each error in errors
+      h4(id='error') #{error}
+
+  form(action='' method='post')
+    div 
+      label Email:
+        input(type='email' name='email')
+    div
+      label Password:
+        input(type='password' name='password')
+    div
+      button(type="submit" formaction='/register') Register
+      button(type="submit" formaction='/login') Login
