@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/students');
+var db = require('monk')(process.MONGOLAB_URI || 'localhost/students');
 var students = db.get('students');
 var users = db.get('users');
 var session = require('express-session');
