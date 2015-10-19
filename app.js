@@ -1,15 +1,17 @@
+require('dotenv').load();
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var db = require('monk')('localhost/students');
+
+var db = require('monk')(process.env.MONGOLAB_URI || 'localhost/students');
 var students = db.get('students');
 var users = db.get('users');
 var session = require('express-session');
 var bcrypt = require('bcrypt');
-require('dotenv').load();
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
