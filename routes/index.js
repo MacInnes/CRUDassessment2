@@ -15,10 +15,10 @@ router.get('/', function(req, res, next) {
 router.get('/students', function(req, res, next){
   if (req.session.user){
     students.find({}, function(err, data){
-      if (data){
+      if (data.length > 0){
         res.render('students', {students: data})
       } else {
-        res.render('students')
+        res.render('students', {students: []});
       }
     });
     
